@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rasti Aldawoodi — Designer & Developer</title>
+  <meta name="description" content="Rasti Aldawoodi — designer and developer crafting thoughtful digital products and interfaces." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0d0e12;
+      --bg-soft: #14161c;
+      --surface: #191c24;
+      --surface-2: #21252f;
+      --border: #2a2f3a;
+      --text: #edeef2;
+      --text-dim: #a3a8b5;
+      --text-faint: #6b7180;
+      --accent: #ff6b4a;
+      --accent-2: #ffb47a;
+      --accent-soft: rgba(255, 107, 74, 0.12);
+      --radius: 18px;
+      --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+      --max: 1080px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glow */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(600px circle at 15% 0%, rgba(255, 107, 74, 0.10), transparent 55%),
+        radial-gradient(700px circle at 90% 20%, rgba(120, 130, 255, 0.08), transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(13, 14, 18, 0.72);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.15rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo .dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 12px var(--accent);
+    }
+    .nav-links { display: flex; gap: 8px; align-items: center; }
+    .nav-links a {
+      color: var(--text-dim); font-size: 0.92rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 10px; transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+    .nav-links a.cta {
+      color: var(--bg); background: var(--accent); font-weight: 600;
+    }
+    .nav-links a.cta:hover { background: var(--accent-2); }
+    .menu-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+    /* ---------- Hero ---------- */
+    header { padding: 96px 0 72px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-soft); color: var(--accent-2);
+      border: 1px solid rgba(255, 107, 74, 0.25);
+      padding: 6px 14px; border-radius: 999px; font-size: 0.82rem; font-weight: 500;
+      margin-bottom: 28px;
+    }
+    .badge .pulse {
+      width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+      box-shadow: 0 0 8px #4ade80; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+    header h1 {
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      max-width: 16ch; margin-bottom: 24px;
+    }
+    header h1 .grad {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    header p.lead {
+      font-size: clamp(1.05rem, 2vw, 1.28rem); color: var(--text-dim);
+      max-width: 54ch; margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 26px; border-radius: 12px; font-weight: 600; font-size: 0.98rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); box-shadow: 0 10px 30px -10px var(--accent); }
+    .btn-primary:hover { transform: translateY(-2px); background: var(--accent-2); }
+    .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border); }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--text-faint); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 72px 0; }
+    .section-head { margin-bottom: 48px; }
+    .section-head .eyebrow {
+      color: var(--accent); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+    .section-head p { color: var(--text-dim); max-width: 56ch; margin-top: 14px; font-size: 1.05rem; }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+    .about-grid p { color: var(--text-dim); margin-bottom: 18px; font-size: 1.05rem; }
+    .about-grid p strong { color: var(--text); font-weight: 600; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .stat .num { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; color: var(--accent-2); }
+    .stat .label { color: var(--text-faint); font-size: 0.88rem; margin-top: 4px; }
+
+    /* ---------- Work ---------- */
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover { transform: translateY(-6px); border-color: var(--text-faint); box-shadow: var(--shadow); }
+    .card .thumb {
+      height: 190px; position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .card .thumb::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(transparent 40%, rgba(0,0,0,0.5));
+    }
+    .card .tag {
+      position: relative; z-index: 1; font-size: 0.78rem; font-weight: 600;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(6px);
+      padding: 5px 12px; border-radius: 999px; color: #fff;
+    }
+    .card .body { padding: 22px 24px 26px; }
+    .card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .card p { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px; }
+    .card .arrow { color: var(--accent); font-weight: 600; font-size: 0.9rem; display: inline-flex; gap: 6px; align-items: center; transition: gap 0.2s; }
+    .card:hover .arrow { gap: 12px; }
+
+    /* ---------- Skills / services ---------- */
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 30px 26px; transition: transform 0.25s, border-color 0.25s;
+    }
+    .service:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .service .icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; font-size: 1.4rem;
+    }
+    .service h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .service p { color: var(--text-dim); font-size: 0.95rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+    .chip {
+      background: var(--surface-2); border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 999px; font-size: 0.88rem; color: var(--text-dim);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-box {
+      background: linear-gradient(135deg, var(--surface), var(--bg-soft));
+      border: 1px solid var(--border); border-radius: 28px;
+      padding: 64px 48px; text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-box::before {
+      content: ""; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--accent-soft), transparent 60%);
+      pointer-events: none;
+    }
+    .contact-box h2 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 18px; position: relative; }
+    .contact-box p { color: var(--text-dim); max-width: 46ch; margin: 0 auto 34px; position: relative; font-size: 1.08rem; }
+    .social { display: flex; gap: 16px; justify-content: center; margin-top: 40px; position: relative; }
+    .social a {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; color: var(--text-dim);
+      transition: transform 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social a:hover { transform: translateY(-3px); color: var(--accent); border-color: var(--accent); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--border); padding: 40px 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+      color: var(--text-faint); font-size: 0.9rem;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 820px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .services { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 68px; left: 0; right: 0; background: var(--bg-soft);
+        border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 4px;
+      }
+      .nav-links.open a { padding: 12px 14px; }
+      .contact-box { padding: 48px 24px; }
+      section { padding: 56px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="logo"><span class="dot"></span> Rasti Aldawoodi</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#contact" class="cta">Let's talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top">
+    <div class="wrap">
+      <span class="badge reveal"><span class="pulse"></span> Available for new projects</span>
+      <h1 class="reveal">Designer &amp; developer building <span class="grad">thoughtful</span> digital products.</h1>
+      <p class="lead reveal">I'm Rasti — I help teams and founders turn rough ideas into clean, fast, human-centered products. From first sketch to shipped interface, I care about the details that make software feel effortless.</p>
+      <div class="hero-actions reveal">
+        <a href="#work" class="btn btn-primary">View my work
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="section-head" style="margin-bottom:28px">
+            <div class="eyebrow">About</div>
+            <h2>A bit about me</h2>
+          </div>
+          <p>I've spent the last several years at the intersection of <strong>design and engineering</strong> — the messy, interesting place where good ideas become real things people use.</p>
+          <p>My approach is simple: understand the problem deeply, prototype quickly, and sweat the details until it feels right. I believe great products come from tight feedback loops, honest conversations, and a genuine respect for the people on the other side of the screen.</p>
+          <p>When I'm not shipping, you'll find me sketching interfaces, reading about typography, or chasing the perfect cup of coffee.</p>
+        </div>
+        <div class="stats reveal">
+          <div class="stat"><div class="num">6+</div><div class="label">Years experience</div></div>
+          <div class="stat"><div class="num">40+</div><div class="label">Projects shipped</div></div>
+          <div class="stat"><div class="num">18</div><div class="label">Happy clients</div></div>
+          <div class="stat"><div class="num">∞</div><div class="label">Cups of coffee</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Selected work</div>
+        <h2>Things I've built</h2>
+        <p>A few recent projects. Every one taught me something new about craft, constraint, and shipping.</p>
+      </div>
+      <div class="work-grid">
+        <article class="card reveal">
+          <div class="thumb" style="background:linear-gradient(135deg,#ff6b4a,#c0392b)"><span class="tag">Product Design</span></div>
+          <div class="body">
+            <h3>Nomad — Travel planner</h3>
+            <p>A calm, map-first trip planner that turns scattered links into a shareable itinerary. Led design and front-end build.</p>
+            <span class="arrow">Read case study →</span>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="thumb" style="background:linear-gradient(135deg,#7c83ff,#4834d4)"><span class="tag">Web App</span></div>
+          <div class="body">
+            <h3>Ledger — Finance dashboard</h3>
+            <p>Real-time analytics for small businesses. Focused on clarity: dense data made genuinely readable at a glance.</p>
+            <span class="arrow">Read case study →</span>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="thumb" style="background:linear-gradient(135deg,#00b894,#0984e3)"><span class="tag">Brand + Site</span></div>
+          <div class="body">
+            <h3>Bloom — Studio identity</h3>
+            <p>Full brand system and marketing site for a design studio. Type-driven, playful, and fast to load.</p>
+            <span class="arrow">Read case study →</span>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="thumb" style="background:linear-gradient(135deg,#fdcb6e,#e17055)"><span class="tag">Mobile</span></div>
+          <div class="body">
+            <h3>Pulse — Habit tracker</h3>
+            <p>A gentle, guilt-free habit app with delightful micro-interactions. Designed and prototyped end to end.</p>
+            <span class="arrow">Read case study →</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">What I do</div>
+        <h2>How I can help</h2>
+      </div>
+      <div class="services">
+        <div class="service reveal">
+          <div class="icon">🎨</div>
+          <h3>Product Design</h3>
+          <p>End-to-end UX and UI — research, wireframes, prototypes, and polished interfaces that ship.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">⚡</div>
+          <h3>Front-End Dev</h3>
+          <p>Fast, accessible, responsive interfaces built with modern tooling and a strong eye for detail.</p>
+        </div>
+        <div class="service reveal">
+          <div class="icon">✦</div>
+          <h3>Design Systems</h3>
+          <p>Scalable component libraries and design tokens that keep teams consistent and moving quickly.</p>
+        </div>
+      </div>
+      <div class="chips reveal">
+        <span class="chip">Figma</span>
+        <span class="chip">React</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Design Systems</span>
+        <span class="chip">Prototyping</span>
+        <span class="chip">Framer</span>
+        <span class="chip">Accessibility</span>
+        <span class="chip">Motion</span>
+        <span class="chip">User Research</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <h2>Let's build something good.</h2>
+        <p>Have a project in mind, or just want to say hello? My inbox is always open.</p>
+        <a href="mailto:hello@rasti.dev" class="btn btn-primary" style="position:relative">Say hello
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="social">
+          <a href="#" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 17V9.99H6V17h2.34zM7.17 8.9a1.36 1.36 0 100-2.71 1.36 1.36 0 000 2.71zM18 17v-3.86c0-2.06-1.1-3.02-2.57-3.02-1.19 0-1.72.65-2.02 1.11V9.99h-2.34c.03.66 0 7.01 0 7.01h2.34v-3.91c0-.21.02-.42.08-.57.16-.42.55-.86 1.19-.86.84 0 1.18.64 1.18 1.58V17H18z"/></svg></a>
+          <a href="#" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.46l8.6-9.83L0 1.15h7.6l5.24 6.93 6.06-6.93zm-1.29 19.5h2.04L6.49 3.24H4.3L17.61 20.65z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <span>© <span id="year"></span> Rasti Aldawoodi</span>
+    <span>Designed &amp; built with care.</span>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav shadow on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('menuToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4 * 0.06) + 's';
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
