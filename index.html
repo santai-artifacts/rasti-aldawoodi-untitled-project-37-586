@@ -21,9 +21,9 @@
       --text: #edeef2;
       --text-dim: #a3a8b5;
       --text-faint: #6b7180;
-      --accent: #ff6b4a;
-      --accent-2: #ffb47a;
-      --accent-soft: rgba(255, 107, 74, 0.12);
+      --accent: #3b82f6;
+      --accent-2: #93c5fd;
+      --accent-soft: rgba(59, 130, 246, 0.12);
       --radius: 18px;
       --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
       --max: 1080px;
@@ -48,8 +48,8 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(600px circle at 15% 0%, rgba(255, 107, 74, 0.10), transparent 55%),
-        radial-gradient(700px circle at 90% 20%, rgba(120, 130, 255, 0.08), transparent 55%);
+        radial-gradient(600px circle at 15% 0%, rgba(59, 130, 246, 0.10), transparent 55%),
+        radial-gradient(700px circle at 90% 20%, rgba(96, 165, 250, 0.08), transparent 55%);
       pointer-events: none;
       z-index: 0;
     }
@@ -113,7 +113,7 @@
       max-width: 16ch; margin-bottom: 24px;
     }
     header h1 .grad {
-      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      background: linear-gradient(120deg, #3b82f6, #93c5fd);
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
     header p.lead {
@@ -127,7 +127,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       cursor: pointer; border: 1px solid transparent;
     }
-    .btn-primary { background: var(--accent); color: var(--bg); box-shadow: 0 10px 30px -10px var(--accent); }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 10px 30px -10px var(--accent); }
     .btn-primary:hover { transform: translateY(-2px); background: var(--accent-2); }
     .btn-ghost { background: var(--surface); color: var(--text); border-color: var(--border); }
     .btn-ghost:hover { transform: translateY(-2px); border-color: var(--text-faint); }
